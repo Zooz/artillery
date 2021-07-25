@@ -401,7 +401,12 @@ function runScenario(script, intermediate, runState, contextVars) {
       script.scenarios[i].weight);
 
   if(script.scenarios[i].apiVersions){
-    contextVars.contextVars = script.scenarios[i].apiVersions;
+    contextVars ?
+        contextVars.apiVersions = script.scenarios[i].apiVersions
+        : script._environment.apiVersions = script.scenarios[i].apiVersions;
+  } else {
+    contextVars.apiVersions = undefined;
+    script._environment.apiVersions = undefined;
   }
 
   intermediate.newScenario(script.scenarios[i].name || i);
