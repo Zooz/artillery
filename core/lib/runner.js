@@ -400,6 +400,10 @@ function runScenario(script, intermediate, runState, contextVars) {
       script.scenarios[i].name,
       script.scenarios[i].weight);
 
+  if(script.scenarios[i].apiVersions){
+    contextVars.contextVars = script.scenarios[i].apiVersions;
+  }
+
   intermediate.newScenario(script.scenarios[i].name || i);
 
   const scenarioStartedAt = process.hrtime();
