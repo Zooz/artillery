@@ -400,16 +400,14 @@ function runScenario(script, intermediate, runState, contextVars) {
       script.scenarios[i].name,
       script.scenarios[i].weight);
 
-  if(script.scenarios[i].apiVersions){
-    contextVars ?
-        contextVars.apiVersions = script.scenarios[i].apiVersions
-        : script._environment.apiVersions = script.scenarios[i].apiVersions;
-  }
-
   intermediate.newScenario(script.scenarios[i].name || i);
 
   const scenarioStartedAt = process.hrtime();
   const scenarioContext = createContext(script, contextVars);
+
+  if(script.scenarios[i].apiVersions){
+    scenarioContext.vars.apiVersions = script.scenarios[i].apiVersions;
+  }
 
   const finish = process.hrtime(start);
   const runScenarioDelta = (finish[0] * 1e9) + finish[1];
