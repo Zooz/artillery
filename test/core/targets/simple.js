@@ -214,6 +214,9 @@ var DB = {};
 let reporters = [];
 
 function index(req, h) {
+  if (req.headers['api-version'] === "test api version"){
+    return h.response().code(202);
+  }
   return 'ok';
 }
 

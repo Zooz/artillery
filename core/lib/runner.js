@@ -405,6 +405,12 @@ function runScenario(script, intermediate, runState, contextVars) {
   const scenarioStartedAt = process.hrtime();
   const scenarioContext = createContext(script, contextVars);
 
+  if(script.scenarios[i].additionalInfo){
+    for ( let [key, value] of Object.entries(script.scenarios[i].additionalInfo) ) {
+      scenarioContext.vars[key] = value;
+    }
+  }
+
   const finish = process.hrtime(start);
   const runScenarioDelta = (finish[0] * 1e9) + finish[1];
   debugPerf("runScenarioDelta: %s", Math.round(runScenarioDelta / 1e6 * 100) / 100);
