@@ -3,8 +3,8 @@
 const test = require('tape');
 const runner = require('../../core/lib/runner').runner;
 
-test('api versions', function(t) {
-  var script = require('./scripts/api_versions.json');
+test('test_additionalInfo', function(t) {
+  var script = require('./scripts/additional_info.json');
 
   runner(script).then(function(ee) {
     ee.on('done', function(report) {
