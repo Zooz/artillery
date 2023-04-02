@@ -181,7 +181,7 @@ function isProbableEnough(obj) {
     }
 
     let r = L.random(100);
-    return r < probability;
+    return r <= probability;
 }
 
 function template(o, context) {
